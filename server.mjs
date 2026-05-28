@@ -10,7 +10,7 @@ const CORS_HEADERS = {
   'Access-Control-Expose-Headers': 'mcp-session-id',
 };
 
-const FORWARD_REQUEST_HEADERS = ['content-type', 'authorization', 'mcp-session-id', 'last-event-id'];
+const FORWARD_REQUEST_HEADERS = ['content-type', 'authorization', 'mcp-session-id', 'last-event-id', 'accept'];
 const FORWARD_RESPONSE_HEADERS = ['content-type', 'mcp-session-id'];
 
 // Wait for playwright-mcp to be ready before accepting traffic
