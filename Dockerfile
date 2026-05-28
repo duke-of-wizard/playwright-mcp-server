@@ -6,7 +6,7 @@ COPY package.json .
 RUN npm install
 
 # Install the browser version bundled with @playwright/mcp
-RUN npx @playwright/mcp install-browser
+RUN npx @playwright/mcp install-browser chrome-for-testing
 
 COPY server.mjs .
 
