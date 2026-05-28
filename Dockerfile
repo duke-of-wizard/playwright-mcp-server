@@ -5,14 +5,10 @@ WORKDIR /app
 COPY package.json .
 RUN npm install
 
-# Install the browser version bundled with @playwright/mcp
-RUN npx @playwright/mcp install-browser
-
 COPY server.mjs .
 
 EXPOSE 3000
 
-# --headless: required in container (headed by default)
-# --isolated: keep browser profile in memory
-# --no-sandbox: required in Docker containers
-CMD ["sh", "-c", "npx @playwright/mcp --port 8931 --host 127.0.0.1 --allowed-hosts '*' --headless --isolated --no-sandbox & node server.mjs"]
+# Find the Chromium binary from the base image and pass it explicitly.
+# This avoids the "chrome not found at /opt/google/chrome" error.
+CMD ["sh", "-c", "CHROME=$(find /ms-playwright -name 'chrome' -path '*/chrome-linux/chrome' | head -1) && echo \"Using browser: $CHROME\" && npx @playwright/mcp --port 8931 --host 127.0.0.1 --allowed-hosts '*' --headless --isolated --no-sandbox --executable-path \"$CHROME\" & node server.mjs"]
