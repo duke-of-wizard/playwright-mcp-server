@@ -13,4 +13,4 @@ COPY server.mjs .
 EXPOSE 3000
 
 # Start MCP server on internal port 8931, then streaming proxy on $PORT
-CMD ["sh", "-c", "node_modules/.bin/playwright-mcp --port 8931 --host 127.0.0.1 --allowed-hosts '*' --browser chromium & node server.mjs"]
+CMD ["sh", "-c", "node_modules/.bin/mcp --port 8931 --host 127.0.0.1 --allowed-hosts '*' --browser chromium & node server.mjs"]
