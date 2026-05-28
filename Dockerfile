@@ -15,4 +15,4 @@ EXPOSE 3000
 # --headless: required in container (headed by default)
 # --isolated: keep browser profile in memory
 # --no-sandbox: required in Docker containers
-CMD ["sh", "-c", "npx @playwright/mcp --port 8931 --host 127.0.0.1 --headless --isolated --no-sandbox & node server.mjs"]
+CMD ["sh", "-c", "npx @playwright/mcp --port 8931 --host 127.0.0.1 --allowed-hosts '*' --headless --isolated --no-sandbox & node server.mjs"]
