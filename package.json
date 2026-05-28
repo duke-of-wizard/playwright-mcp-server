@@ -1,0 +1,8 @@
+{
+  "name": "playwright-mcp-server",
+  "version": "1.0.0",
+  "description": "Playwright MCP server hosted on Railway",
+  "dependencies": {
+    "@playwright/mcp": "latest"
+  }
+}
