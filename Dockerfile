@@ -12,5 +12,5 @@ COPY server.mjs .
 
 EXPOSE 3000
 
-# Use local node_modules binary (same version as install step above), force chromium
+# Start MCP server on internal port 8931, then streaming proxy on $PORT
 CMD ["sh", "-c", "node_modules/.bin/playwright-mcp --port 8931 --host 127.0.0.1 --allowed-hosts '*' --browser chromium & node server.mjs"]

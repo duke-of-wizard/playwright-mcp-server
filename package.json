@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Playwright MCP server hosted on Railway",
   "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
   "dependencies": {
-    "@playwright/mcp": "latest",
-    "http-proxy": "^1.18.1"
+    "@playwright/mcp": "^0.0.28"
   }
 }
