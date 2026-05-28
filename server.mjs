@@ -131,9 +131,9 @@ server.on('upgrade', (req, socket, head) => {
   upstreamReq.end();
 });
 
-// Wait for MCP to be ready, then start accepting traffic
-waitForMCP().then(() => {
-  server.listen(PORT, '0.0.0.0', () => {
-    console.log(`Streaming MCP proxy on :${PORT} → MCP on :${MCP_PORT}`);
-  });
+// Start immediately so Railway health checks can reach us.
+// waitForMCP logs readiness but doesn't block the server.
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Streaming MCP proxy on :${PORT} → MCP on :${MCP_PORT}`);
+  waitForMCP(); // warm-up log only
 });
