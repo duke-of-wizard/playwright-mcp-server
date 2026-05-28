@@ -5,12 +5,12 @@ WORKDIR /app
 COPY package.json .
 RUN npm install
 
-# Install the browser version bundled with @playwright/mcp
-RUN npx @playwright/mcp install-browser chrome-for-testing
+# Install chromium using the exact playwright version bundled with @playwright/mcp
+RUN npx playwright install chromium
 
 COPY server.mjs .
 
 EXPOSE 3000
 
-# Start MCP server on internal port 8931, then CORS proxy on $PORT
-CMD ["sh", "-c", "npx @playwright/mcp@latest --port 8931 --host 127.0.0.1 --allowed-hosts '*' & node server.mjs"]
+# Use local node_modules binary (same version as install step above), force chromium
+CMD ["sh", "-c", "node_modules/.bin/playwright-mcp --port 8931 --host 127.0.0.1 --allowed-hosts '*' --browser chromium & node server.mjs"]
